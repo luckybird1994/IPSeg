@@ -2,7 +2,7 @@
 
 This repository is the official PyTorch implementation of our IPSeg framework. [[arXiv](https://arxiv.org/abs/2310.10912)]
 <div align="center">
-<img src="assets/Framework.png" width="85%">
+<img src="assets/Intro.png" width="95%">
 </div>
 
 ## Abstract
@@ -12,17 +12,33 @@ The realm of computer vision has witnessed a paradigm shift with the advent of f
 ## News
 - [x] [2024.07.16] Paper is accepted by IJCV and GitHub repo is created.
 
+## Framework
+
+<div align="center">
+<img src="assets/Framework.png" width="95%">
+</div>
+
 ## Visual Results
-### Segmention Visualization
+### Qualitative Comparison
 <div align="center">
-<img src="assets/Seg.png" width="100%">
+<img src="assets/Qualitative.png" width="95%">
 </div>
 
-### SD-DINO Visualization
+### Robust Image Prompts 
 <div align="center">
-<img src="assets/SD-DINO.png" width="100%">
+<img src="assets/Robust.png" width="95%">
 </div>
 
+### How the IPSEG to work?
+<div align="center">
+<img src="assets/Work.png" width="95%">
+</div>
+
+### Complete StableDiffusion&DINO Feature
+<div align="center">
+<img src="assets/SD&DINO2.png" width="95%">
+<img src="assets/SD&DINO.png" width="95%">
+</div>
 
 ## Environment Setup
 To install the required dependencies, use the following commands:
