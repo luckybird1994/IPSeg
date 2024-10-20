@@ -39,6 +39,20 @@ pip install -e .
 
 ## Get Started
 
+1. Download the [PerSeg dataset](https://huggingface.co/datasets/xhk/IPSeg-Datasets/tree/main) and [checkpoint](https://huggingface.co/xhk/IPSeg/tree/main).
+2. Get the saliency maps of PerSeg dataset by
+'''bash
+sh scripts/perseg_sod.sh
+'''
+3. Get the Stable&DINOv2 features of PerSeg dataset by
+'''bash
+sh scripts/perseg_feat.sh
+'''
+4. Get the segementation maps of PerSeg dataset under one reffering images group by
+'''bash
+sh scripts/perseg_test.sh
+'''
+
 <!-- ## Demo -->
 
 ## Citation
