@@ -19,22 +19,22 @@ The realm of computer vision has witnessed a paradigm shift with the advent of f
 </div>
 
 ## Visual Results
-### Qualitative Comparison
+### Qualitative Comparison.
 <div align="center">
 <img src="assets/Qualitative.png" width="95%">
 </div>
 
-### Robust Image Prompts 
+### Robust Image Prompts.
 <div align="center">
 <img src="assets/Robust.png" width="95%">
 </div>
 
-### How the IPSEG to work?
+### How the IPSEG Work?
 <div align="center">
 <img src="assets/Work.png" width="95%">
 </div>
 
-### Complete StableDiffusion&DINO Feature
+### Complete Composed Feature (StableDiffusion and DINOV2).
 <div align="center">
 <img src="assets/SD&DINO2.png" width="95%">
 <img src="assets/SD&DINO.png" width="95%">
