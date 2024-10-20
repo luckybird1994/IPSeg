@@ -20,7 +20,7 @@ The realm of computer vision has witnessed a paradigm shift with the advent of f
 
 ### SD-DINO Visualization
 <div align="center">
-<img src="assets/SD-DINO.png" width="85%">
+<img src="assets/SD-DINO.png" width="100%">
 </div>
 
 
