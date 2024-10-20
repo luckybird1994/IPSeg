@@ -39,7 +39,7 @@ pip install -e .
 
 ## Get Started
 
-## Demo
+<!-- ## Demo -->
 
 ## Citation
 
@@ -57,7 +57,7 @@ If you find our work useful, please cite:
 
 ## Acknowledgement
 
-This repo benefits from [sd-dino](https://github.com/Junyi42/sd-dino), [SAM](https://github.com/facebookresearch/segment-anything). Our heartfelt gratitude goes to the developers of these resources!
+This repo benefits from [sd-dino](https://github.com/Junyi42/sd-dino), [SAM](https://github.com/facebookresearch/segment-anything) and [TSDN](https://github.com/moothes/A2S-v2). Our heartfelt gratitude goes to the developers of these resources!
 
 ## Contact
 
