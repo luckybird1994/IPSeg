@@ -20,7 +20,7 @@ setup(
         "pillow==9.4.0",
         "gdown>=3.13.0",
         f"mask2former @ file://localhost/{os.getcwd()}/sd-dino/third_party/Mask2Former/",
-        f"odise @ file://localhost/{os.getcwd()}/sed-dino/third_party/ODISE/"
+        f"odise @ file://localhost/{os.getcwd()}/sd-dino/third_party/ODISE/"
     ],
     include_package_data=True,
 )
