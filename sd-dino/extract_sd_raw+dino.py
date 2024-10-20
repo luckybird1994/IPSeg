@@ -9,6 +9,7 @@ import argparse
 from extractor_dino import ViTExtractor
 from extractor_sd import load_model, process_features_and_mask
 import torch.nn.functional as F
+import json
 
 def resize(img, target_res, resize=True, to_pil=True, edge=False):
     original_width, original_height = img.size
@@ -51,31 +52,13 @@ def resize(img, target_res, resize=True, to_pil=True, edge=False):
         canvas = Image.fromarray(canvas)
     return canvas
 
-def compute_pck(model, aug, files,  real_size=960):
-    # load DINO v2
-    MODEL_SIZE = args.MODEL_SIZE
+def compute_pck(model, aug, extractor, layer, facet, files):
+    real_size = 960
     img_size = 840 
-    model_dict={'small':'dinov2_vits14',
-                'base':'dinov2_vitb14',
-                'large':'dinov2_vitl14',
-                'giant':'dinov2_vitg14'}
-    model_type = model_dict[MODEL_SIZE] 
-    layer = 11 
-    if 'l' in model_type:
-        layer = 23
-    elif 'g' in model_type:
-        layer = 39
-    facet = 'token' 
-    stride = 14
-    device = 'cuda' if torch.cuda.is_available() else 'cpu'
-    extractor = ViTExtractor(model_type, stride, device=device)
-
-
+    
     N = len(files) 
-    pbar = tqdm(total=N)
 
-    for idx in range(N):
-        # load image 
+    for idx in tqdm(range(N)):
         img1 = Image.open(files[idx]).convert('RGB')
         img1_input = resize(img1, real_size, resize=True, to_pil=True, edge=False)
         img1 = resize(img1, img_size, resize=True, to_pil=True, edge=False)
@@ -88,11 +71,12 @@ def compute_pck(model, aug, files,  real_size=960):
         with torch.no_grad():
             img1_desc = process_features_and_mask(model, aug, img1_input, input_text=input_text, mask=False, raw=True)
             img1_batch = extractor.preprocess_pil(img1)
-            img1_desc_dino = extractor.extract_descriptors(img1_batch.to(device), layer, facet)
+            img1_desc_dino = extractor.extract_descriptors(img1_batch.cuda(), layer, facet)
             
             state_dict = {}
             state_dict['sd_feat'] = img1_desc
             state_dict['dino_feat'] = img1_desc_dino            
+            
             torch.save(state_dict,files[idx].replace('imgs','sd_raw+dino_feat')[:-4]+'.pth')
 
 def main(args):
@@ -105,6 +89,24 @@ def main(args):
     # load stable diffusion
     model, aug = load_model(diffusion_ver=args.VER, image_size=args.SIZE, num_timesteps=args.TIMESTEP, block_indices=tuple(args.INDICES))
 
+    # load DINO v2
+    MODEL_SIZE = args.MODEL_SIZE
+    model_dict={'small':'dinov2_vits14',
+                'base':'dinov2_vitb14',
+                'large':'dinov2_vitl14',
+                'giant':'dinov2_vitg14'}
+    
+    model_type = model_dict[MODEL_SIZE] 
+    layer = 11 
+    if 'l' in model_type:
+        layer = 23
+    elif 'g' in model_type:
+        layer = 39
+    facet = 'token' 
+    stride = 14
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    extractor = ViTExtractor(model_type, stride, device=device)
+    
     # prepare path
     imgs_dir = os.path.join(args.path, 'imgs')
     global feat_save_dir, captions_dir
@@ -124,14 +126,14 @@ def main(args):
         files = os.listdir(os.path.join(imgs_dir,cat))
         files = sorted(files)
         files = [os.path.join(imgs_dir,cat,file) for file in files]
-        compute_pck(model, aug, feat_save_dir + '/' +cat,files)
+        compute_pck(model, aug, extractor, layer, facet, files)
 
 if __name__ == '__main__':
     # CUDA_VISIBLE_DEVICES=7 python extract_sd_raw+dino.py
     parser = argparse.ArgumentParser()
     parser.add_argument('--path', type=str, default='/data/tanglv/data/fss-te/fold0')
     parser.add_argument('--SEED', type=int, default=42)
-
+    
     # Stable Diffusion Setting
     parser.add_argument('--VER', type=str, default="v1-5")                          # version of diffusion, v1-3, v1-4, v1-5, v2-1-base
     parser.add_argument('--PROJ_LAYER', action='store_true', default=False)         # set true to use the pretrained projection layer from ODISE for dimension reduction

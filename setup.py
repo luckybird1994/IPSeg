@@ -19,8 +19,13 @@ setup(
         "numpy==1.26.4",
         "pillow==9.4.0",
         "gdown>=3.13.0",
+        "thop",
+        "progress==1.6",
         f"mask2former @ file://localhost/{os.getcwd()}/sd-dino/third_party/Mask2Former/",
-        f"odise @ file://localhost/{os.getcwd()}/sd-dino/third_party/ODISE/"
+        f"odise @ file://localhost/{os.getcwd()}/sd-dino/third_party/ODISE/",
+        f"pydensecrf @ file://localhost/{os.getcwd()}/A2S-v2/third_party/pydensecrf/"
     ],
     include_package_data=True,
 )
+
+# process thop pydensecrf

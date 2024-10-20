@@ -1,0 +1,1 @@
+python sd-dino/extract_sd_raw+dino.py --path=data/fss-te/perseg
