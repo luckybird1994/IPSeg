@@ -9,5 +9,6 @@ python  ipseg_fss.py --sam_type vit_h  \
     --nt=4 \
     --sd_weight=0.1 \
     --sd_layer_weight=0.3,0.2,0.1 \
+    --out_root "work_dirs/fss-test" \
 #    --visualize \
     

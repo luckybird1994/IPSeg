@@ -105,8 +105,8 @@ def get_arguments():
     parser.add_argument('--sam_type', type=str, default='vit_h')
     
     #base setting
-    parser.add_argument('--data', type=str, default='/data/tanglv/data/fss-te/fold0')
-    parser.add_argument('--outdir', type=str, default='fss-te')
+    parser.add_argument('--data', type=str, default='data/fss-te/fold0')
+    parser.add_argument('--out_root', type=str, default='work-dirs/fss-te')
     parser.add_argument('--visualize', action='store_true')
     
     args = parser.parse_args()
@@ -132,7 +132,7 @@ def solve(args):
     if args.mask_filter: suffix += '_mask-filter'
     
     suffix += '_'+str(args.ptopk)+'_'+str(args.pt)+'_'+str(args.ntopk)+'_'+str(args.nt)
-    output_path = './work_dirs/' + '/' + args.outdir + '/' +args.data.split('/')[-1] + '/' + suffix 
+    output_path = args.out_root + '/' +args.data.split('/')[-1] + '/' + suffix 
     Path(output_path).mkdir(parents=True, exist_ok=True)
     logger = open(output_path+'/log.txt','w')     
     
