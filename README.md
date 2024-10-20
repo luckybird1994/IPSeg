@@ -1,8 +1,64 @@
 ## Towards Training-free Open-world Segmentation via Image Prompt Foundation Models, IJCV2024
 
+This repository is the official PyTorch implementation of our zero-shot cosod framework. [[arXiv](https://arxiv.org/abs/2310.10912)]
+<div align="center">
+<img src="assets/Framework.png" width="85%">
+</div>
+
 ## Abstract
 
-In this paper, we introduce a novel multimodal camo-perceptive framework (MMCPF) aimed at handling zero-shot Camouflaged Object Detection (COD) by leveraging the powerful capabilities of Multimodal Large Language Models (MLLMs). Recognizing the inherent limitations of current COD methodologies, which predominantly rely on supervised learning models demanding extensive and accurately annotated datasets, resulting in weak generalization, our research proposes a zero-shot MMCPF that circumvents these challenges. Although MLLMs hold significant potential for broad applications, their effectiveness in COD is hindered and they would make misinterpretations of camouflaged objects. To address this challenge, we further propose a strategic enhancement called the Chain of Visual Perception (CoVP), which significantly improves the perceptual capabilities of MLLMs in camouflaged scenes by leveraging both linguistic and visual cues more effectively. We validate the effectiveness of MMCPF on five widely used COD datasets, containing CAMO, COD10K, NC4K, MoCA-Mask and OVCamo. Experiments show that MMCPF can outperform all existing state-of-the-art zero-shot COD methods, and achieve competitive performance compared to weakly-supervised and fully-supervised methods, which demonstrates the potential of MMCPF.
+The realm of computer vision has witnessed a paradigm shift with the advent of foundational models, mirroring the transformative influence of large language models in the domain of natural language processing. This paper delves into the exploration of open-world segmentation, presenting a novel approach called Image Prompt Segmentation (IPSeg) that harnesses the power of vision foundational models. IPSeg lies the principle of a training-free paradigm, which capitalizes on image prompt techniques. Specifically, IPSeg utilizes a single image containing a subjective visual concept as a flexible prompt to query vision foundation models like DINOv2 and Stable Diffusion. Our approach extracts robust features for the prompt image and input image, then matches the input representations to the prompt representations via a novel feature interaction module to generate point prompts highlighting target objects in the input image. The generated point prompts are further utilized to guide the Segment Anything Model to segment the target object in the input image. The proposed method stands out by eliminating the need for exhaustive training sessions, thereby offering a more efficient and scalable solution. Experiments on COCO, PASCAL VOC, and other datasets demonstrate IPSeg's efficacy for flexible open-world segmentation using intuitive image prompts. This work pioneers tapping foundation models for open-world understanding through visual concepts conveyed in images.
 
 ## News
-- [x] [2024.07.30] Paper is accepted by MM2024 and GitHub repo is created.
+- [x] [2024.07.16] Paper is accepted by IJCV and GitHub repo is created.
+
+## Visual Results
+### Segmention Visualization
+<div align="center">
+<img src="assets/Qualitative.png" width="100%">
+</div>
+
+### SD-DINO Visualization
+<div align="center">
+<img src="assets/SD-DINO.png" width="85%">
+</div>
+
+
+## Environment Setup
+To install the required dependencies, use the following commands:
+
+```bash
+conda create -n ipseg python=3.9
+conda activate ipseg
+conda install pytorch=1.13.1 torchvision=0.14.1 pytorch-cuda=11.6 -c pytorch -c nvidia
+conda install -c "nvidia/label/cuda-11.6.1" libcusolver-dev
+git clone git@github.com:luckybird1994/IPSeg.git
+cd IPSeg
+pip install -e .
+```
+
+## Get Started
+
+## Demo
+
+## Citation
+
+If you find our work useful, please cite:
+
+```BiBTeX
+@article{DBLP:journals/corr/abs-2310-10912,
+  author       = {Lv Tang and Peng-Tao Jiang and Haoke Xiao an Bo Li},
+  title        = {Towards Training-free Open-world Segmentation via Image Prompting Foundation Models},
+  journal      = {CoRR},
+  volume       = {abs/2310.10912},
+  year         = {2023}
+}
+```
+
+## Acknowledgement
+
+This repo benefits from [sd-dino](https://github.com/Junyi42/sd-dino), [SAM](https://github.com/facebookresearch/segment-anything). Our heartfelt gratitude goes to the developers of these resources!
+
+## Contact
+
+Feel free to leave issues here or send our e-mails (luckybird1994@gmail.com, pt.jiang@vivo.com, hk.xiao.me@gmail.com, libra@vivo.com).
