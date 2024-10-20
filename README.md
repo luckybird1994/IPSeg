@@ -1,6 +1,6 @@
-## Towards Training-free Open-world Segmentation via Image Prompt Foundation Models, IJCV2024
+## IJCV2024: Towards Training-free Open-world Segmentation via Image Prompt Foundation Models
 
-This repository is the official PyTorch implementation of our zero-shot cosod framework. [[arXiv](https://arxiv.org/abs/2310.10912)]
+This repository is the official PyTorch implementation of our IPSeg framework. [[arXiv](https://arxiv.org/abs/2310.10912)]
 <div align="center">
 <img src="assets/Framework.png" width="85%">
 </div>
@@ -15,7 +15,7 @@ The realm of computer vision has witnessed a paradigm shift with the advent of f
 ## Visual Results
 ### Segmention Visualization
 <div align="center">
-<img src="assets/Qualitative.png" width="100%">
+<img src="assets/Seg.png" width="100%">
 </div>
 
 ### SD-DINO Visualization
