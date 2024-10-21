@@ -27,8 +27,6 @@ def test_model(model, test_sets, config, epoch=None, saver=None):
         save_folder = os.path.join(config['save_path'], set_name, 'a2s')
         check_path(save_folder)
         
-        
-        
         titer = test_set.size
         MR = MetricRecorder(titer)
         ious = []
@@ -37,15 +35,12 @@ def test_model(model, test_sets, config, epoch=None, saver=None):
         test_bar = Bar('Dataset {:10}:'.format(set_name), max=titer)
         for j in range(titer):
             
-            print(j)
             pack = test_set.load_data(j)
-            print(j)
             images = torch.tensor(pack['image']).float()
             gt = pack['gt']
             name = pack['name']
             
             images = images.cuda()
-            print(j)
             priors = [images]
             if 'dep' in pack.keys():
                 priors.append(torch.tensor(pack['dep']).unsqueeze(0).float().cuda())
@@ -117,7 +112,6 @@ def test_model(model, test_sets, config, epoch=None, saver=None):
                     saver(Y, gt, name, save_folder, config)
                     pass
             
-            print("ok")
             Bar.suffix = '{}/{}'.format(j, titer)
             test_bar.next()
         
@@ -135,7 +129,6 @@ def main():
     
     config, model, _, _, _, saver = load_framework(net_name)
     config['net_name'] = net_name
-    
     if config['crf']:
         config['orig_size'] = True
     

@@ -67,6 +67,6 @@ def cfg_convert(config):
     # config['save_path'] = save_path
     
     weight_path = os.path.join(config['weight_path'], config['model_name'], config['backbone'], config['trset'], config['sub'])
-    check_path(weight_path)
+    # check_path(weight_path)
     config['weight_path'] = weight_path
     

@@ -13,9 +13,8 @@ def params_count(model):
 def load_framework(net_name):
     # Load Configure
     config, schedule = importlib.import_module('methods.{}.config'.format(net_name)).get_config()
-    print(config)
     os.environ["CUDA_VISIBLE_DEVICES"] = config['gpus']
-    
+
     # Constructing network
     model = importlib.import_module('base.model').Network(net_name, config)
     
