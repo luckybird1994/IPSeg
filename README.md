@@ -52,7 +52,7 @@ git clone git@github.com:luckybird1994/IPSeg.git
 cd IPSeg
 pip install -e .
 ```
-
+***Tips:*** If you get network errors when using Huggingface, try: `export HF_ENDPOINT=https://hf-mirror.com`.
 ## Get Started
 
 1. Download the [PerSeg Dataset](https://huggingface.co/datasets/xhk/IPSeg-Datasets/tree/main) and [Checkpoint](https://huggingface.co/xhk/IPSeg/tree/main).
